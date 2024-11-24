@@ -1,0 +1,149 @@
+/* General Styles */ 
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header section */
+.header {
+    width: 100%;
+    background-color: #db981d; /* Gold background color */
+    color: #000000;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #333; /* Separator line */
+    opacity: 0;
+    animation: slideIn 1s forwards; /* Slide in animation */
+}
+
+/* Animation for the header */
+@keyframes slideIn {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Logo styling */
+.logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    animation: slideIn 1s ease-out 0.5s forwards; /* Animation delay for logo */
+}
+
+/* Button container within header */
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* Updated Button styling */
+.button-container button {
+    background-color: transparent; /* Removed background color */
+    color: #000000; /* Button text color */
+    border: none; /* Removed border */
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    text-transform: uppercase; /* Make text uppercase */
+    font-weight: bold; /* Optional for added professionalism */
+    opacity: 0;
+    animation: slideIn 1s ease-out forwards;
+}
+
+.button-container button:nth-child(1) {
+    animation-delay: 0.6s;
+}
+.button-container button:nth-child(2) {
+    animation-delay: 0.8s;
+}
+.button-container button:nth-child(3) {
+    animation-delay: 1s;
+}
+.button-container button:nth-child(4) {
+    animation-delay: 1.2s;
+}
+
+.button-container button:hover {
+    background-color: #db981d; /* Hover background color */
+    color: white; /* Change text color on hover */
+}
+
+/* Main content container */
+.container {
+    width: 100%;
+    height: 100vh; /* Ensure the container takes up the full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px; /* Space for the header */
+    box-sizing: border-box;
+    background-image: url('https://i.pinimg.com/1200x/fc/58/36/fc583694de50374e536d84564579919e.jpg'); /* Background image for main content */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center; /* Center the image */
+    background-attachment: fixed; /* Keep the background fixed when scrolling */
+    animation: fadeIn 1.5s forwards; /* Animation for main content */
+}
+
+/* Animation for fading in the main content */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Welcome section styling */
+.welcome-section {
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    animation: slideInText 1.5s ease-out forwards;
+}
+
+/* Animation for sliding in welcome text */
+@keyframes slideInText {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Welcome text styles */
+.welcome-section h1 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.welcome-section p {
+    font-size: 1.2em;
+    margin-top: 10px;
+    animation: slideInText 1.5s ease-out 0.5s forwards; /* Animation for the welcome message */
+}

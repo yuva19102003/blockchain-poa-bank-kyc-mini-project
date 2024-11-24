@@ -1,0 +1,13 @@
+bank-1-node: 0xd1E89955d51112dF81d75e9f9143D9342cCf60eF
+
+bank-2-node: 0x0613C7AA2Ce6261692b5f71C3393430A5636E5b5
+
+validator-node: 0x058852c4c00a5395569af43D71a578d171874202
+
+poa-storage-node: 0x0738095D59D1dd3BDf9Cd9019bcAB608327C49Aa
+
+
+
+
+
+kubectl port-forward validator-5bc885cd4c-whkwx 8545:8545

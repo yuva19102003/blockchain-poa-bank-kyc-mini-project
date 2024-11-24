@@ -1,0 +1,168 @@
+/* General Styles */
+body, html {
+    background-image: url('https://i.pinimg.com/564x/70/79/48/70794809ac1ad01280d5b30860d7829d.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Light background color */
+}
+
+
+
+/* Header styling */
+.header {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.507); /* Gold background color */
+    color: #000000;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #333; /* Separator line */
+    opacity: 0;
+    animation: slideIn 1s forwards; /* Slide in animation */
+}
+
+/* Logo styling (on the left side) */
+.header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Button container (on the right side) */
+.header .button-container {
+    display: flex; /* Align buttons horizontally */
+    gap: 10px; /* Space between buttons */
+}
+
+/* Button styling */
+.header .button-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.header .button-container button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+/* Main Outer Container */
+.outer-container {
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: slideIn 1s forwards;
+}
+
+/* Inner Container for Sections */
+.container {
+    display: flex;
+    flex-direction: row; /* Arrange sections in a row */
+    justify-content: space-between; /* Distribute sections evenly */
+    gap: 20px; /* Space between sections */
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* Heading Styling */
+h1 {
+    margin-bottom: 20px; /* Add some space below the heading */
+    text-align: center; /* Center the heading */
+    color: #333333; /* Darker text color for contrast */
+    animation: slideIn 1s forwards; /* Apply sliding animation to heading */
+    position: relative; /* Add relative positioning */
+}
+
+/* Arrange the three sections in a row */
+.form-section {
+    width: 30%; /* Each section takes 30% of the container's width */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1s forwards; /* Apply sliding animation to sections */
+    position: relative; /* Add relative positioning */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Make the form fields and button full-width */
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em; /* Slightly larger font for readability */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Ensure the sections are displayed inline on smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically on small screens */
+        gap: 20px;
+    }
+    .form-section {
+        width: 100%; /* Full width on small screens */
+    }
+}
+
+/* Sliding animation */
+@keyframes slideIn {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+
+/* Footer styling */
+.footer {
+    width: 100%;
+    padding: 0.5px;
+    background-color: rgba(255, 255, 255, 0.507);
+    color: rgb(13, 13, 14);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}

@@ -1,0 +1,39 @@
+minikube mount /home/yuva/Desktop/mini-project/minikube-config/volumes:/mnt/data
+
+
+----------------------------------------------------------------------------------------------------------
+
+Run the Mount Command in the Background (Linux/macOS):
+
+You can also use the nohup command to run minikube mount in the background:
+
+nohup minikube mount /home/yuva/Desktop/mini-project/minikube-config/volumes:/mnt/data &
+
+----------------------------------------------------------------------------------------------------------
+To stop the `minikube mount`, you can either:
+
+### 1. **Find and Kill the Process**
+Since you ran the command with `nohup` and in the background, you can find the process and kill it.
+
+1. **Find the Process ID (PID)**:
+   Run the following command to find the PID of the `minikube mount` process:
+   ```bash
+   ps aux | grep 'minikube mount'
+   ```
+
+2. **Kill the Process**:
+   Once you find the PID (it should be the first number in the output), kill the process using:
+   ```bash
+   kill <PID>
+   ```
+
+   Replace `<PID>` with the actual process ID of the `minikube mount`.
+
+### 2. **Use `minikube mount` Command to Stop**
+Alternatively, you can use the following command to stop the mount:
+
+```bash
+minikube mount --cleanup
+```
+
+This will unmount the directory that was mounted with `minikube mount`.

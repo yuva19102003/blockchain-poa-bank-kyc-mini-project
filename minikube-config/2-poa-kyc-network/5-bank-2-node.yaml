@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bank-2-node-depolyment
+  namespace: poa-kyc-network
+  labels:
+    app: bank-2-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bank-2-node
+  template:
+    metadata:
+      labels:
+        app: bank-2-node
+    spec:
+      containers:
+      - name: bank-2-node
+        image: yuva19102003/poa-kyc-blockchain-network:bank2 # Replace with bank-2-node image name if different
+        ports:
+        - containerPort: 30307
+        - containerPort: 8553
+        - containerPort: 6063
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bank-2-node-svc
+  namespace: poa-kyc-network
+  labels:
+    app: bank-2-node
+spec:
+  type: ClusterIP
+  ports:
+  - name: ws-port # Name for WebSocket port
+    protocol: TCP
+    port: 8553
+    targetPort: 8553
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bank-2-node-metrics-service
+  namespace: poa-kyc-network
+spec:
+  type: NodePort # Expose only the metrics port externally
+  selector:
+    app: bank-2-node
+  ports:
+  - name: metrics-port
+    protocol: TCP
+    port: 6063
+    targetPort: 6063
+    nodePort: 30663 # NodePort within the range 30000-32767
+  - name: p2p-port # Name for P2P communication port
+    protocol: TCP
+    port: 30307
+    targetPort: 30307
+    nodePort: 30307

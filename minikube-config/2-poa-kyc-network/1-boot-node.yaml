@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: boot-node-deployment
+  namespace: poa-kyc-network
+  labels:
+    app: boot-node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: boot-node
+  template:
+    metadata:
+      labels:
+        app: boot-node
+    spec:
+      containers:
+      - name: boot-node
+        image: yuva19102003/poa-kyc-blockchain-network:bootnode # Replace with your validator image name if different
+        ports:
+        - containerPort: 30301
+          protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: boot-node-nodeport-svc
+  namespace: poa-kyc-network
+  labels:
+    app: boot-node
+spec:
+  type: NodePort
+  ports:
+  - protocol: UDP
+    port: 30301
+    targetPort: 30301
+    nodePort: 30301 # Use the same port for consistency
+  selector:
+    app: boot-node

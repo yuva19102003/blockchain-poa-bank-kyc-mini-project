@@ -1,0 +1,228 @@
+/* Apply background image to the entire body */
+body {
+    background-image: url('https://i.pinimg.com/564x/70/79/48/70794809ac1ad01280d5b30860d7829d.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensure body covers full height */
+}
+
+
+/* Header styling */
+.header {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.507); /* Gold background color */
+    color: #000000;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #333; /* Separator line */
+    opacity: 0;
+    animation: slideIn 1s forwards; /* Slide in animation */
+}
+
+/* Logo styling (on the left side) */
+.header .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Button container (on the right side) */
+.header .button-container {
+    display: flex; /* Align buttons horizontally */
+    gap: 10px; /* Space between buttons */
+}
+
+/* Button styling */
+.header .button-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.header .button-container button:hover {
+    background-color: #0056b3;
+}
+
+
+
+/* Main container for content */
+.container {
+    width: 80%;
+    max-width: 1000px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideIn 1s forwards;
+    display: flex; /* Flexbox layout */
+    flex-direction: row; /* Arrange sections in a row */
+    justify-content: space-between; /* Distribute sections evenly */
+    gap: 30px; /* Add space between sections */
+}
+
+/* Remove KYC Registration title */
+h1 {
+    display: none;
+}
+
+/* Section styling for each form block */
+#registerSection, #findKycSection, #moveToPendingSection {
+    width: 30%; /* Each section now takes up 30% of the container width */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px; /* Add padding for spacing inside sections */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background for the sections */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add some shadow for depth */
+    text-align: center; /* Center the text in each section */
+}
+
+/* Flex layout for sections (horizontal layout) */
+.container > div {
+    display: flex; /* Row layout for sections */
+    justify-content: space-between; /* Space sections evenly */
+    width: 100%; /* Full width */
+    gap: 30px; /* Space between the sections */
+}
+
+/* Modify KYC Registration section heading styling */
+#registerSection h2 {
+    font-weight: bold;  /* Remove bold */
+    color: #000000; /* Change to normal text color */
+}
+
+/* Adjust layout for mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically on mobile */
+        align-items: center; /* Center the sections */
+    }
+
+    #registerSection, #findKycSection, #moveToPendingSection {
+        width: 80%; /* Make each section take up 80% of the width on small screens */
+    }
+
+    /* Adjust spacing for smaller screens */
+    #registerSection, #findKycSection, #moveToPendingSection {
+        gap: 15px;
+    }
+}
+
+/* Label and input styling remain unchanged */
+
+/* Label styling */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Input fields styling */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #007bff; /* Blue border on focus */
+    outline: none;
+}
+
+/* Button styling */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Sliding animation */
+.sliding-animation {
+    position: relative;
+    opacity: 0;
+    left: -100%;
+    animation: slideIn 1s forwards;
+}
+
+/* Keyframes for sliding effect */
+@keyframes slideIn {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+/* Styling for result and status display */
+#kycIdDisplay, #moveStatusDisplay {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    animation: slideIn 1s forwards;
+    color: #333;
+}
+
+/* Make form more responsive with Flexbox */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack sections vertically on small screens */
+        gap: 20px;
+    }
+
+    #registerSection, #findKycSection, #moveToPendingSection {
+        width: 100%; /* Each section takes full width on small screens */
+    }
+    
+    /* Adjust spacing for smaller screens */
+    #registerSection, #findKycSection, #moveToPendingSection {
+        gap: 15px;
+    }
+}  
+
+/* Footer styling */
+.footer {
+    width: 100%;
+    padding: 0.5px;
+    background-color: rgba(255, 255, 255, 0.507);
+    color: rgb(13, 13, 14);
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}

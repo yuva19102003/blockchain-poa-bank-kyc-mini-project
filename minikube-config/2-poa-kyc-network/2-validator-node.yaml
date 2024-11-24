@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validator-depolyment
+  namespace: poa-kyc-network
+  labels:
+    app: validator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validator
+  template:
+    metadata:
+      labels:
+        app: validator
+    spec:
+      containers:
+      - name: validator
+        image: yuva19102003/poa-kyc-blockchain-network:validator # Replace with validator image name if different
+        ports:
+        - containerPort: 30304
+        - containerPort: 8545
+        - containerPort: 8550
+        - containerPort: 6060
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: validator-node-clusterip-svc
+  namespace: poa-kyc-network
+  labels:
+    app: validator
+spec:
+  type: ClusterIP
+  ports:
+  - name: http-rpc # Name for HTTP-RPC port
+    protocol: TCP
+    port: 8545
+    targetPort: 8545
+  - name: ws-port # Name for WebSocket port
+    protocol: TCP
+    port: 8550
+    targetPort: 8550
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: validator-node-nodeport-svc
+  namespace: poa-kyc-network
+spec:
+  type: NodePort # Expose only the metrics port externally
+  selector:
+    app: validator
+  ports:
+  - name: metrics-port
+    protocol: TCP
+    port: 6060
+    targetPort: 6060
+    nodePort: 30660 # NodePort within the range 30000-32767
+  - name: p2p-port # Name for P2P communication port
+    protocol: TCP
+    port: 30304
+    targetPort: 30304
+    nodePort: 30304

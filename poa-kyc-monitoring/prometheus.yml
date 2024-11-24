@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+- job_name: 'go-ethereum'
+  scrape_interval: 10s
+  metrics_path: /debug/metrics/prometheus
+  static_configs:
+  - targets:
+    - '192.168.49.2:30660' # Replace with actual IP and port of endpoint 1
+    - '192.168.49.2:30661' # Replace with actual IP and port of endpoint 2
+    - '192.168.49.2:30662' # Replace with actual IP and port of endpoint 3
+    - '192.168.49.2:30663' # Replace with actual IP and port of endpoint 4
+    labels:
+      chain: ethereum
