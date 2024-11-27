@@ -1,0 +1,26 @@
+enode: enode://9c4bc136d278a90c4fb7fa8ba1f74edd4e3e518fd6aca3f3d933e44ce26973651739148bcde5f7c0a342598742135513e90ef043b2445e3e3c2cfba102a40427@127.0.0.1:0?discport=30301
+
+bank1: 0x8C21A7e37d10baBCeb592a601d6Dd90eA7851E23
+pass: 12345
+
+bank2: 0xDE4Cd844f329299BCD4C42c56Bfd4eB0e9A04735
+pass: 12345
+
+validator: 0x9377Df2cf8cABf8d7a600E809a8cAd52363EB4e7
+pass: 12345
+
+poa-node: 0x06f52De59A08fE72c61F54304916800c7a6A0f2c
+pass: 12345
+
+yuva@yuva:~/Desktop/MINI-PROJECT/mini-project/kyc-poa/bootnode$ minikube ip
+192.168.58.2
+
+docker build -t geth-bootnode .
+
+docker run -d --name geth-validator \
+  -v /data:/validator \
+  -p 30304:30304 \
+  -p 8550:8550 \
+  -p 8545:8545 \
+  -p 6060:6060 \
+  geth-validator

@@ -1,0 +1,260 @@
+https://hackernoon.com/setup-your-own-private-proof-of-authority-ethereum-network-with-geth-9a0a3750cda8
+
+admin: 0x83E501EA97Dc4738be1Cd0D9BB48b0C05Bcb1AAD
+password: 12345
+
+bank1: 0xb42c072BA3Edd6c679d924597cB88E0E0B096CD6
+password: 12345
+
+bank2: 0xB184fF517BCD942a1E876e5180f84364F0Ce7b6D
+password: 12345
+
+observer: 0xE47d8677D3906Fcf7404664A5B03098aFE1a6b2a
+password: 12345
+
+
+enode://10e6b33870d553d68d57ca7345c97967ee5062c4d5855b85b2b60b080ed2b9957112f3b5d6309448e82e23a448d0d083a44ba85d76a0ad48751c80be00eb8b7f@127.0.0.1:0?discport=30301
+
+
+geth --datadir ./admin init ../genesis.json
+
+
+geth --datadir ./admin --networkid 1237 --bootnodes "enode://10e6b33870d553d68d57ca7345c97967ee5062c4d5855b85b2b60b080ed2b9957112f3b5d6309448e82e23a448d0d083a44ba85d76a0ad48751c80be00eb8b7f@127.0.0.1:30301" --mine --syncmode 'full' --port 30303 --authrpc.port 8551
+geth --datadir ./bank1 --networkid 1237 --bootnodes "enode://10e6b33870d553d68d57ca7345c97967ee5062c4d5855b85b2b60b080ed2b9957112f3b5d6309448e82e23a448d0d083a44ba85d76a0ad48751c80be00eb8b7f@127.0.0.1:30301" --syncmode 'full' --port 30304
+geth --datadir ./bank2 --networkid 1237 --bootnodes "enode://10e6b33870d553d68d57ca7345c97967ee5062c4d5855b85b2b60b080ed2b9957112f3b5d6309448e82e23a448d0d083a44ba85d76a0ad48751c80be00eb8b7f@127.0.0.1:30301" --syncmode 'full' --port 30305
+geth --datadir ./observer --networkid 1237 --bootnodes "enode://10e6b33870d553d68d57ca7345c97967ee5062c4d5855b85b2b60b080ed2b9957112f3b5d6309448e82e23a448d0d083a44ba85d76a0ad48751c80be00eb8b7f@127.0.0.1:30301" --syncmode 'light' --port 30306
+
+
+
+geth --networkid 1237 --datadir "./bank1" --bootnodes enode://10e6b33870d553d68d57ca7345c97967ee5062c4d5855b85b2b60b080ed2b9957112f3b5d6309448e82e23a448d0d083a44ba85d76a0ad48751c80be00eb8b7f@127.0.0.1:30301 --port 30304 --syncmode full --rpc --allow-insecure-unlock --rpccorsdomain "*" --rpcport 8552 --unlock 0xb42c072BA3Edd6c679d924597cB88E0E0B096CD6 --password pass.txt  console
+
+--ABI--
+
+[
+	{
+		"inputs": [],
+		"name": "getMessage",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "newMessage",
+				"type": "string"
+			}
+		],
+		"name": "setMessage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+
+--ABI--
+
+
+var abi = [{"inputs":[{"internalType":"string","name":"newMessage","type":"string"}],"name":"setMessage","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getMessage","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}];
+var bytecode = "0x6080604052348015600e575f80fd5b506106498061001c5f395ff3fe608060405234801561000f575f80fd5b5060043610610034575f3560e01c8063368b877214610038578063ce6d41de14610054575b5f80fd5b610052600480360381019061004d9190610260565b610072565b005b61005c610084565b6040516100699190610321565b60405180910390f35b805f90816100809190610544565b5050565b60605f80546100929061036e565b80601f01602080910402602001604051908101604052809291908181526020018280546100be9061036e565b80156101095780601f106100e057610100808354040283529160200191610109565b820191905f5260205f20905b8154815290600101906020018083116100ec57829003601f168201915b5050505050905090565b5f604051905090565b5f80fd5b5f80fd5b5f80fd5b5f80fd5b5f601f19601f8301169050919050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52604160045260245ffd5b6101728261012c565b810181811067ffffffffffffffff821117156101915761019061013c565b5b80604052505050565b5f6101a3610113565b90506101af8282610169565b919050565b5f67ffffffffffffffff8211156101ce576101cd61013c565b5b6101d78261012c565b9050602081019050919050565b828183375f83830152505050565b5f6102046101ff846101b4565b61019a565b9050828152602081018484840111156102205761021f610128565b5b61022b8482856101e4565b509392505050565b5f82601f83011261024757610246610124565b5b81356102578482602086016101f2565b91505092915050565b5f602082840312156102755761027461011c565b5b5f82013567ffffffffffffffff81111561029257610291610120565b5b61029e84828501610233565b91505092915050565b5f81519050919050565b5f82825260208201905092915050565b5f5b838110156102de5780820151818401526020810190506102c3565b5f8484015250505050565b5f6102f3826102a7565b6102fd81856102b1565b935061030d8185602086016102c1565b6103168161012c565b840191505092915050565b5f6020820190508181035f83015261033981846102e9565b905092915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52602260045260245ffd5b5f600282049050600182168061038557607f821691505b60208210810361039857610397610341565b5b50919050565b5f819050815f5260205f209050919050565b5f6020601f8301049050919050565b5f82821b905092915050565b5f600883026103fa7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff826103bf565b61040486836103bf565b95508019841693508086168417925050509392505050565b5f819050919050565b5f819050919050565b5f61044861044361043e8461041c565b610425565b61041c565b9050919050565b5f819050919050565b6104618361042e565b61047561046d8261044f565b8484546103cb565b825550505050565b5f90565b61048961047d565b610494818484610458565b505050565b5b818110156104b7576104ac5f82610481565b60018101905061049a565b5050565b601f8211156104fc576104cd8161039e565b6104d6846103b0565b810160208510156104e5578190505b6104f96104f1856103b0565b830182610499565b50505b505050565b5f82821c905092915050565b5f61051c5f1984600802610501565b1980831691505092915050565b5f610534838361050d565b9150826002028217905092915050565b61054d826102a7565b67ffffffffffffffff8111156105665761056561013c565b5b610570825461036e565b61057b8282856104bb565b5f60209050601f8311600181146105ac575f841561059a578287015190505b6105a48582610529565b86555061060b565b601f1984166105ba8661039e565b5f5b828110156105e1578489015182556001820191506020850194506020810190506105bc565b868310156105fe57848901516105fa601f89168261050d565b8355505b6001600288020188555050505b50505050505056fea2646970667358221220aa211be0333c7b4f51c5c203e8c93d8c82bd195db2b4d382fd5ee5216bd88cf564736f6c634300081a0033";
+
+var MessageContract = eth.contract(abi);
+var contractInstance = MessageContract.new({
+    from: eth.accounts[0],
+    data: bytecode,
+    gas: 3000000
+}, function(e, contract) {
+    if (!e) {
+        if (contract.address) {
+            console.log("Contract deployed! Address: " + contract.address);
+        }
+    }
+});
+
+
+0x0000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
+
+0x469c81100000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000b68656c6c6f20776f726c64000000000000000000000000000000000000000000
+
+
+
+eth.sendTransaction({from: "0x83E501EA97Dc4738be1Cd0D9BB48b0C05Bcb1AAD", to: "0xb42c072BA3Edd6c679d924597cB88E0E0B096CD6", value: web3.toWei(1, "ether")});
+
+
+[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_customerName",
+				"type": "string"
+			}
+		],
+		"name": "approveKYC",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_customerName",
+				"type": "string"
+			}
+		],
+		"name": "registerKYC",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_customerName",
+				"type": "string"
+			}
+		],
+		"name": "rejectKYC",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "bank1",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "bank2",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"name": "kycRequests",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "requester",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "customerName",
+				"type": "string"
+			},
+			{
+				"internalType": "enum KYC.KYCStatus",
+				"name": "status",
+				"type": "uint8"
+			},
+			{
+				"internalType": "address",
+				"name": "customerAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_customerName",
+				"type": "string"
+			}
+		],
+		"name": "viewCustomerAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_customerName",
+				"type": "string"
+			}
+		],
+		"name": "viewKYCStatus",
+		"outputs": [
+			{
+				"internalType": "enum KYC.KYCStatus",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
+
+
+Public address of the key:   0x78A8C08f3F8A484A0Fd2175E870398887564d20f
+
+
+
+http://127.0.0.1:6060/debug/metrics/prometheus
