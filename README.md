@@ -2,13 +2,13 @@
 # Ethereum-Based KYC Framework for Improved Customer Verification in Banking
 
 ## Overview
-This project introduces a **decentralized KYC verification system** using a private Ethereum blockchain network. By automating the KYC process, this system enhances security, reduces redundancy, and improves efficiency in customer onboarding for banks.
+This project introduces a decentralized KYC verification system using a private Ethereum blockchain network. By automating the KYC process, this system enhances security, reduces redundancy, and improves bank customer onboarding efficiency.
 
 ---
 
 ## Objective
 - To mitigate money laundering by leveraging blockchain technology.
-- To automate KYC data management for reduced time and operational costs.
+- To automate KYC data management to reduce time and operational costs.
 - To ensure secure, transparent, and tamper-proof identity verification.
 
 ---
@@ -17,11 +17,12 @@ This project introduces a **decentralized KYC verification system** using a priv
 The framework utilizes a **private Ethereum blockchain** to streamline KYC processes. Key features include:
 - **Smart contracts** for role-based access control, allowing only authorized entities to manage sensitive data.
 - **Immutability and transparency** to reduce fraud and improve compliance.
-- **Enhanced efficiency**, cutting costs and redundancy for both banks and customers.
+- **Enhanced efficiency**, cutting costs and redundancy for banks and customers.
 
 ---
 
 ## System Architecture
+<img src="Screenshots/Drawing 2024-11-14 23.53.48.excalidraw 1.png">
 
 ### Existing System
 - **Challenges**:
@@ -44,38 +45,45 @@ The framework utilizes a **private Ethereum blockchain** to streamline KYC proce
 
 1. **Set Up Nodes for Private Blockchain**:
    - Nodes: Bootnode, Validator, Bank1, Bank2, PoA Storage.
+     <img src="Screenshots/blockchain.png">
    - Tool: **Geth (Go Ethereum)**.
 
-2. **Develop Smart Contracts**:
+3. **Develop Smart Contracts**:
    - Tools: **Solidity**, **Remix IDE**.
+     <img src="Screenshots/Screenshot from 2024-11-15 02-40-29.png">
    - Smart Contracts:
      - `PoA-Contract.sol` for network operations.
      - `Validator.sol` for transaction approvals.
+       <img src="Screenshots/Screenshot from 2024-11-15 02-42-50.png">
      - `Bank1.sol` and `Bank2.sol` for KYC management.
      - `KYCList.sol` for tracking KYC requests.
 
-3. **Containerize Blockchain Nodes**:
+4. **Containerize Blockchain Nodes**:
    - Tool: **Docker**.
    - Features:
      - Isolated and scalable node deployment.
      - Automated setup and management.
 
-4. **Handle Accounts and Transactions**:
+5. **Handle Accounts and Transactions**:
    - Tools: **MetaMask**, **Ether.js**.
    - Features:
      - Secure account management.
      - Transparent and verifiable transaction handling.
 
-5. **Monitor Nodes and Network Performance**:
+6. **Monitor Nodes and Network Performance**:
    - Tools: **Prometheus**, **Grafana**.
    - Features:
      - Real-time monitoring of CPU, memory, and transaction metrics.
      - Visual dashboards for system insights.
 
-6. **Coordinate Node Deployment and Scaling**:
+7. **Coordinate Node Deployment and Scaling**:
    - Tool: **Minikube**.
    - Features:
      - Local Kubernetes cluster for efficient node management.
+       <img src="Screenshots/Screenshot from 2024-11-14 21-05-01.png">
+       <img src="Screenshots/Screenshot from 2024-11-14 21-06-27.png">
+       <img src="Screenshots/Screenshot from 2024-11-14 21-15-07.png">
+
 
 ---
 
@@ -97,25 +105,6 @@ The framework utilizes a **private Ethereum blockchain** to streamline KYC proce
 
 ---
 
-## Tools and Technologies
-
-### Blockchain Tools
-- **Geth**: For node creation and network management.
-- **Solidity**: Smart contract development.
-
-### Development Tools
-- **Remix IDE**: Smart contract testing and deployment.
-
-### Deployment Tools
-- **Docker**: Containerization for Ethereum nodes.
-- **Minikube**: Kubernetes-based node deployment.
-
-### Monitoring Tools
-- **Prometheus**: Metrics collection.
-- **Grafana**: Dashboard visualization.
-
----
-
 ## Features and Advantages
 - **Immutability**: Tamper-proof audit trails.
 - **High Security**: Robust mechanisms to secure data and transactions.
@@ -128,15 +117,25 @@ The framework utilizes a **private Ethereum blockchain** to streamline KYC proce
 ## Outputs
 - **Nodes**:
   - Bootnode
+    <img src="Screenshots/Screenshot from 2024-11-14 21-14-13.png">
   - Validator Node
+    <img src="Screenshots/Screenshot from 2024-11-14 21-14-23.png">
   - PoA Storage Node
+    <img src="Screenshots/Screenshot from 2024-11-14 21-14-30.png">
   - Bank1 and Bank2 Nodes
+    <img src="Screenshots/Screenshot from 2024-11-14 21-14-38.png">
+    <img src="Screenshots/Screenshot from 2024-11-14 21-14-44.png">
 - **Dashboards**:
   - Grafana dashboard for system monitoring.
+    <img src="Screenshots/Screenshot from 2024-11-15 02-40-12.png">
 - **Pages**:
   - Admin page
+    
   - Bank page
+    <img src="Screenshots/Screenshot from 2024-11-09 23-16-53.png">
+    <img src="Screenshots/Screenshot from 2024-11-09 23-17-10.png">
   - Customer page
+    <img src="Screenshots/Screenshot from 2024-11-09 23-19-34.png">
 
 ---
 
